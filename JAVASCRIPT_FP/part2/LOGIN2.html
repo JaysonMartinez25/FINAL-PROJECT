@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login Form</title>
+    <style>
+
+    .Cat{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        position: fixed;
+        z-index: 2;
+        left: 50%;
+        top:15%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f2f2f2;
+
+        }
+  
+    .form-popup {
+        z-index: 2;
+        }
+
+    input[type="radio"] {
+        position: relative;
+        z-index: 1;
+        }
+
+    .form-popup {
+        margin-top: 15px;
+        display: none;
+        position: fixed;
+        z-index: 2;
+        left: 50%;
+        top: 55%;
+        transform: translate(-50%, -50%);
+        width: 400px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #f2f2f2;
+      }
+      .form-popup input[type="text"],
+      .form-popup input[type="email"],
+      .form-popup input[type="password"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      .form-popup input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .form-popup input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      
+      /* Styles for role selection */
+      label[for="role"] {
+        display: block;
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+      
+      input[type="radio"] {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+    <script>
+      // Display teacher/student forms based on radio button selection
+      function showForm(role) {
+        var teacherForm = document.getElementById("teacher-form");
+        var studentForm = document.getElementById("student-form");
+        if (role === "teacher") {
+          teacherForm.style.display = "block";
+          studentForm.style.display = "none";
+        } else if (role === "student") {
+          teacherForm.style.display = "none";
+          studentForm.style.display = "block";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form class="Cat">
+      <label for="role">Select your category:</label><br>
+      <input type="radio" id="teacher" name="role" value="teacher" onclick="showForm('teacher')">
+      <label for="teacher">Teacher</label><br>
+      <input type="radio" id="student" name="role" value="student" onclick="showForm('student')">
+      <label for="student">Student</label><br><br>
+    </form>
+    
+    <!-- Teacher form popup -->
+    <div class="form-popup" id="teacher-form">
+        <form action="/submit-form" method="post" onsubmit="return redirectToTeacherPage();">
+        <h1>Login as a Teacher</h1>
+        <label for="teacher-name">Name:</label>
+        <input type="text" id="teacher-name" name="teacher-name" required><br><br>
+        
+        <label for="teacher-email">Email:</label>
+        <input type="email" id="teacher-email" name="teacher-email" required><br><br>
+        
+        <label for="teacher-password">Password:</label>
+        <input type="password" id="teacher-password" name="teacher-password" required><br><br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <script>
+        function redirectToTeacherPage() {
+          window.location.href = "teacher.html";
+          return false;
+        }
+      </script>
+
+
+    <!-- Student form popup -->
+    <div class="form-popup" id="student-form">
+        <form action="/submit-form" method="post" onsubmit="return redirectToStudentPage();">
+        <h1>Login as a Student</h1>
+        <label for="teacher-name">Name:</label>
+        <input type="text" id="teacher-name" name="teacher-name" required><br><br>
+        
+        <label for="teacher-email">Email:</label>
+        <input type="email" id="teacher-email" name="teacher-email" required><br><br>
+        
+        <label for="teacher-password">Password:</label>
+        <input type="password" id="teacher-password" name="teacher-password" required><br><br>
+        
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <script>
+        function redirectToStudentPage() {
+          window.location.href = "student.html";
+          return false;
+        }
+      </script>
+
+</body>
+</html>
+    
